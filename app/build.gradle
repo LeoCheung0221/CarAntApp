@@ -1,0 +1,161 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        applicationId rootProject.ext.android.applicationId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        multiDexEnabled true
+
+        buildConfigField('String', 'API_SERVER_URL', '"http://www.antscar.cn/"')
+    }
+
+    compileOptions {
+        sourceCompatibility rootProject.ext.android.javaVersion
+        sourceCompatibility rootProject.ext.android.javaVersion
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+
+    signingConfigs {
+        def Properties localProps = new Properties()
+        localProps.load(new FileInputStream(file('../local.properties')))
+        def Properties keyProps = new Properties()
+
+        //if can not find the property of keystore.props.file , then using debug.keystore
+        if (localProps['keystore.props.file']) {
+            keyProps.load(new FileInputStream(file(localProps['keystore.props.file'])))
+        } else {
+            keyProps["store"] = '../buildsystem/carant.jks'
+            keyProps["storePass"] = '123456'
+            keyProps["alias"] = 'carant'
+            keyProps["pass"] = '123456'
+        }
+
+        debug {
+            storeFile file(keyProps["store"])
+            keyAlias keyProps["alias"]
+            storePassword keyProps["storePass"]
+            keyPassword keyProps["pass"]
+        }
+
+        release {
+            // release版本使用assert确保存在该属性 否则报错，避免错误打包
+            assert localProps['keystore.props.file'];
+            storeFile file(keyProps["store"])
+            keyAlias keyProps["alias"]
+            storePassword keyProps["storePass"]
+            keyPassword keyProps["pass"]
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "_Debug"]
+            manifestPlaceholders = [IS_DEBUG: "yes"]
+        }
+
+        release {
+            manifestPlaceholders = [IS_DEBUG: "no"]
+
+            minifyEnabled false
+            shrinkResources false
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release // package cmd：gradlew assembleRelease
+            //custom name of apk like (name + version + time + flavor).apk
+            applicationVariants.all { variant ->
+                if (variant.buildType.name.equals('release')) {
+                    variant.outputs.each { output ->
+                        def outputFile = output.outputFile
+                        if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                            def fileName = "carant_v${defaultConfig.versionName}_${releaseTime()}_${variant.flavorName}.apk"
+                            output.outputFile = new File(outputFile.parent, fileName)
+                        }
+                    }
+                }
+            }
+            productFlavors.all { flavor ->
+                manifestPlaceholders.put("UMENG_CHANNEL_VALUE", name)
+            }
+        }
+    }
+
+    productFlavors {
+        _Debug {}
+        Yingyonghui {}
+        Jifeng {}
+        Nduoshichang {}
+        Wandoujia {}
+        _360zhushou {}
+        TengxunYingyongbao {}
+        Taobaozhushou {}
+        Xiaomishangdian {}
+        Sougouzhushou {}
+        Mumayi {}
+        Lianxiangle {}
+        Zhongguoyidong {}
+        Zhongguoliantong {}
+        Shichangbu {}
+    }
+
+    lintOptions {
+        abortOnError rootProject.ext.android.abortOnLintError
+        checkReleaseBuilds rootProject.ext.android.checkLintRelease
+        quiet true
+        ignoreWarnings true
+        //some libraries have issues with this
+        disable 'InvalidPackage'
+        //Lint gives this warning but SDK 20 would be Android L beta
+        disable 'OldTargetApi'
+    }
+}
+
+dependencies {
+
+    def presentationDependencies = rootProject.ext.presentationDependencies
+    def presentationTestDependencies = rootProject.ext.presentationTestDependencies
+    def developmentDependencies = rootProject.ext.developmentDependencies
+
+    compile project(':andlibrary')
+    compile project(':domain')
+
+    //    apt rootProject.ext.libDaggerCompiler
+    compile presentationDependencies.libSupportAppcompat
+    compile presentationDependencies.libSupportDesign
+    compile presentationDependencies.libSupportRecyclerview
+    compile presentationDependencies.libSupportPercent
+    compile presentationDependencies.libSupportV4
+    compile presentationDependencies.libDagger
+    compile presentationDependencies.libButterKnife
+    compile presentationDependencies.libRxJava
+    compile presentationDependencies.libRxAndroid
+//    compile presentationDependencies.libRxBinding
+    compile presentationDependencies.libGlide
+    provided presentationDependencies.libJavaxAnnotation
+
+    androidTestCompile presentationTestDependencies.libMockito
+    androidTestCompile presentationTestDependencies.libDexmaker
+    androidTestCompile presentationTestDependencies.libDexmakerMockito
+    androidTestCompile presentationTestDependencies.libEspresso
+    androidTestCompile presentationTestDependencies.libTestingSupportLib
+
+    compile developmentDependencies.libLeakCanary
+}
+
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", java.util.TimeZone.getTimeZone("UTC"))
+}

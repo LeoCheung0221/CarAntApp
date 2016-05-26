@@ -1,0 +1,32 @@
+apply plugin: 'java'
+
+//noinspection GroovyUnusedAssignment
+sourceCompatibility = 1.7
+//noinspection GroovyUnusedAssignment
+targetCompatibility = 1.7
+
+configurations {
+    provided
+}
+
+sourceSets {
+    main {
+        compileClasspath += configurations.provided
+    }
+}
+
+dependencies {
+    def domainDependencies = rootProject.ext.domainDependencies
+    def domainTestDependencies = rootProject.ext.domainTestDependencies
+
+    provided domainDependencies.libDaggerCompiler
+    provided domainDependencies.libJavaxAnnotation
+
+    compile domainDependencies.libDagger
+    compile domainDependencies.libRxJava
+
+    testCompile domainTestDependencies.libJunit
+    testCompile domainTestDependencies.libMockito
+
+//    compile fileTree(dir: 'libs', include: ['*.jar'])
+}

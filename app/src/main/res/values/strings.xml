@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">CarAntApp</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">设置</string>
+
+    <!-- region main drawer navigation -->
+    <string name="main_drawer_nav_1">消息中心</string>
+    <string name="main_drawer_nav_2">我的好友</string>
+    <string name="main_drawer_nav_3">会员中心</string>
+    <string name="main_drawer_nav_4">我的收藏</string>
+    <string name="main_drawer_nav_5">听价识车</string>
+    <string name="main_drawer_nav_7">分享</string>
+    <string name="main_drawer_nav_8">发送给</string>
+    <!-- endregion -->
+</resources>

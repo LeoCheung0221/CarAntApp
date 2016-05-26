@@ -1,0 +1,68 @@
+apply plugin: 'com.android.library'
+//apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    useLibrary 'org.apache.http.legacy'
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+    }
+
+    compileOptions {
+//        sourceCompatibility rootProject.ext.android.javaVersion
+//        targetCompatibility rootProject.ext.android.javaVersion
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+
+    lintOptions {
+        abortOnError rootProject.ext.android.abortOnLintError
+        checkReleaseBuilds rootProject.ext.android.checkLintRelease
+        ignoreWarnings rootProject.ext.android.ignoreWarnings
+        disable 'InvalidPackage'  // Some libraries have issues with this
+        disable 'OldTargetApi'
+        // Due to Robolectric that modifies the manifest when running tests
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    def dataDependencies = rootProject.ext.dataDependencies
+    def testDependencies = rootProject.ext.dataTestDependencies
+
+    compile project(':domain')
+
+//    apt dataDependencies.daggerCompiler
+//    compile rootProject.ext.libSupportAppcompat
+//    compile rootProject.ext.libSupportV4
+    provided dataDependencies.libJavaxAnnotation
+    compile dataDependencies.libDagger
+    compile dataDependencies.libOkHttp
+    compile dataDependencies.libGson
+    compile dataDependencies.libRxJava
+    compile dataDependencies.libRxAndroid
+    compile dataDependencies.libAndroidAnnotations
+
+    testCompile testDependencies.libJunit
+    testCompile testDependencies.libAssertj
+    testCompile testDependencies.libMockito
+    testCompile testDependencies.libRobolectric
+
+}
