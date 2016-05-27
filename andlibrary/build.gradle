@@ -50,15 +50,16 @@ dependencies {
     compile project(':domain')
 
 //    apt dataDependencies.daggerCompiler
-//    compile rootProject.ext.libSupportAppcompat
-//    compile rootProject.ext.libSupportV4
-    provided dataDependencies.libJavaxAnnotation
+    compile dataDependencies.libSupportAppcompat
+    compile dataDependencies.libSupportV4
     compile dataDependencies.libDagger
     compile dataDependencies.libOkHttp
     compile dataDependencies.libGson
     compile dataDependencies.libRxJava
     compile dataDependencies.libRxAndroid
     compile dataDependencies.libAndroidAnnotations
+
+    provided dataDependencies.libJavaxAnnotation
 
     testCompile testDependencies.libJunit
     testCompile testDependencies.libAssertj

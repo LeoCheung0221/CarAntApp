@@ -70,14 +70,19 @@ ext {
             libSupportRecyclerview: "com.android.support:recyclerview-v7:${supportVersion}",
             libSupportPercent     : "com.android.support:percent:${supportVersion}",
             libSupportV4          : "com.android.support:support-v4:${supportVersion}",
-            libGlide              : "com.github.bumptech.glide:glide:3.7.0",
+
             libButterKnife        : "com.jakewharton:butterknife:${butterKnifeVersion}",
             libDagger             : "com.google.dagger:dagger:${daggerVersion}",
             libDaggerCompiler     : "com.google.dagger:dagger-compiler:${daggerVersion}",
             libRxAndroid          : "io.reactivex:rxandroid:${rxAndroidVersion}",
             libRxJava             : "io.reactivex:rxjava:${rxJavaVersion}",
             libEventBus           : "org.greenrobot:eventbus:3.0.0",
-            libJavaxAnnotation    : "javax.annotation:jsr250-api:${javaxAnnotationVersion}"
+            libJavaxAnnotation    : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+
+            libGlide              : "com.github.bumptech.glide:glide:3.7.0",
+            libSystembartint      : "com.readystatesoftware.systembartint:systembartint:1.0.3",
+            libSuperToast         : "com.github.johnpersano:supertoasts:1.3.4@aar",
+
     ]
 
     presentationTestDependencies = [
@@ -101,6 +106,8 @@ ext {
     ]
 
     dataDependencies = [
+            libSupportAppcompat        : "com.android.support:appcompat-v7:${supportVersion}",
+            libSupportV4               : "com.android.support:support-v4:${supportVersion}",
             libDagger                  : "com.google.dagger:dagger:${daggerVersion}",
             libDaggerCompiler          : "com.google.dagger:dagger-compiler:${daggerVersion}",
             libRetrofit                : "com.squareup.retrofit2:retrofit:${retrofitVersion}",

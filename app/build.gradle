@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -133,7 +134,8 @@ dependencies {
     compile project(':andlibrary')
     compile project(':domain')
 
-    //    apt rootProject.ext.libDaggerCompiler
+    apt presentationDependencies.libDaggerCompiler
+    provided presentationDependencies.libJavaxAnnotation
     compile presentationDependencies.libSupportAppcompat
     compile presentationDependencies.libSupportDesign
     compile presentationDependencies.libSupportRecyclerview
@@ -143,9 +145,9 @@ dependencies {
     compile presentationDependencies.libButterKnife
     compile presentationDependencies.libRxJava
     compile presentationDependencies.libRxAndroid
-//    compile presentationDependencies.libRxBinding
+    compile presentationDependencies.libSuperToast
     compile presentationDependencies.libGlide
-    provided presentationDependencies.libJavaxAnnotation
+    compile presentationDependencies.libSystembartint
 
     androidTestCompile presentationTestDependencies.libMockito
     androidTestCompile presentationTestDependencies.libDexmaker

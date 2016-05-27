@@ -3,4 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- region app -->
+    <color name="color_toolbar">#f0171C22</color>
+    <color name="color_app_primary">#ea7856</color>
+    <color name="color_text_hint">#888888</color>
+    <color name="color_text_font">#4e4e4e</color>
+    <!-- endregion -->
 </resources>

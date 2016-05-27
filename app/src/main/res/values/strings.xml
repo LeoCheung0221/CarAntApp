@@ -14,5 +14,14 @@
     <string name="main_drawer_nav_5">听价识车</string>
     <string name="main_drawer_nav_7">分享</string>
     <string name="main_drawer_nav_8">发送给</string>
-    <!-- endregion -->
+
+    <!-- region toolbar title name -->
+    <string name="header_name_login">账号登录</string>
+
+    <!-- login activity -->
+    <string name="string_hint_account">账号/手机号</string>
+    <string name="string_hint_password">输入密码</string>
+    <string name="string_btn_login">登录</string>
+    <string name="string_text_view_forget">忘记密码?</string>
+    <string name="string_text_view_sign_in">注册</string>
 </resources>
