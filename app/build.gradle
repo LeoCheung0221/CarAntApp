@@ -143,11 +143,14 @@ dependencies {
     compile presentationDependencies.libSupportV4
     compile presentationDependencies.libDagger
     compile presentationDependencies.libButterKnife
+    compile presentationDependencies.libOkHttp
+    compile presentationDependencies.libOkHttpLoggingInterceptor
     compile presentationDependencies.libRxJava
     compile presentationDependencies.libRxAndroid
     compile presentationDependencies.libSuperToast
     compile presentationDependencies.libGlide
     compile presentationDependencies.libSystembartint
+    compile presentationDependencies.libTimber
 
     androidTestCompile presentationTestDependencies.libMockito
     androidTestCompile presentationTestDependencies.libDexmaker

@@ -6,12 +6,12 @@ import android.view.View;
 
 import com.set.leo.andlibrary.lib_uiframework.FragmentBase;
 import com.set.leo.carantapp.R;
-import com.set.leo.carantapp.base.ToolBarActivity;
+import com.set.leo.carantapp.base.ActivityBaseToolBar;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ActivityLogin extends ToolBarActivity {
+public class ActivityLogin extends ActivityBaseToolBar {
 
     @Override
     protected void handleIntent(Intent intent) {

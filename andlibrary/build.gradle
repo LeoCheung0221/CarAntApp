@@ -53,10 +53,10 @@ dependencies {
     compile dataDependencies.libSupportAppcompat
     compile dataDependencies.libSupportV4
     compile dataDependencies.libDagger
-    compile dataDependencies.libOkHttp
+//    compile dataDependencies.libOkHttp
+//    compile dataDependencies.libRxJava
+//    compile dataDependencies.libRxAndroid
     compile dataDependencies.libGson
-    compile dataDependencies.libRxJava
-    compile dataDependencies.libRxAndroid
     compile dataDependencies.libAndroidAnnotations
 
     provided dataDependencies.libJavaxAnnotation

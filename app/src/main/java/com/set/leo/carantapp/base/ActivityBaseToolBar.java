@@ -17,7 +17,7 @@ import com.set.leo.carantapp.R;
  * description: activity which contains toolbar
  * what & why is modified:
  */
-public abstract class ToolBarActivity extends AppActivity {
+public abstract class ActivityBaseToolBar extends ActivityBaseApp {
 
     private ToolBarHelper mToolBarHelper;
     public Toolbar toolbar;
@@ -39,7 +39,7 @@ public abstract class ToolBarActivity extends AppActivity {
         if (setHeaderBackIcon() == true)
             toolbar.setNavigationIcon(R.drawable.icon_nav_back);
         else
-            toolbar.setPadding(100,0,0,0);
+            toolbar.setPadding(80,0,0,0);
 
         View contentView = mToolBarHelper.getContentView();
         contentView.setFitsSystemWindows(true);

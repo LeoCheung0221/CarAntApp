@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
  * description: make further warp
  * what & why is modified:
  */
-public abstract class AppActivity extends ActivityBase {
+public abstract class ActivityBaseApp extends ActivityBase {
 
     //obtain intent & handle with it
     protected abstract void handleIntent(Intent intent);

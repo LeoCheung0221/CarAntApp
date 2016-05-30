@@ -3,12 +3,7 @@ package com.set.leo.carantapp.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,12 +11,12 @@ import android.view.MenuItem;
 
 import com.set.leo.andlibrary.lib_uiframework.FragmentBase;
 import com.set.leo.carantapp.R;
-import com.set.leo.carantapp.base.AppActivity;
+import com.set.leo.carantapp.base.ActivityBaseApp;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ActivityHome extends AppActivity
+public class ActivityHome extends ActivityBaseApp
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Bind(R.id.drawer_layout) DrawerLayout drawer;
